@@ -4,11 +4,15 @@ class Footer extends React.Component {
     render() {
         return (
             <div>
-                <footer className="footer mt-auto py-5 bg-dark">
+                <footer className="footer mt-auto pt-3 bg-light pb-2">
                     <div className="container text-left text-muted">
                         <h6><b>COMPANY</b></h6>
-                        <p>About us</p>
-                        <p>Careers</p>
+                        <ul className="list-unstyled">
+                            <li>About us</li>
+                            <li>Careers</li>
+                            <li>Terms</li>
+                            <li>Help</li>
+                        </ul>
                     </div>
                 </footer>
             </div>

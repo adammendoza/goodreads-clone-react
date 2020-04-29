@@ -1,0 +1,18 @@
+#jumbo {
+    background-image: url('./bookBG2.jpg');
+    background-size: cover;
+    min-height: 80vh;
+}
+
+#brand {
+    font-size: 30px;
+}
+
+/* h1 {
+color:rgb(241, 230, 63);
+}
+
+#login {
+color:rgb(241, 230, 63);
+} */
+
