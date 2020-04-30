@@ -3,25 +3,40 @@ import './App.css';
 import Navbar from './Navbar'
 import Footer from './Footer'
 import NewUser from './NewUser'
-import { BrowserRouter as Router } from 'react-router-dom'
+import Dashboard from './Dashboard'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-function Wrapper(){
+function Wrapper() {
   return (
     <div className="App">
       <div id="jumbo">
-        <Navbar />
-        <NewUser />
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/dashboard" component={Dash} />
       </div>
       <Footer />
     </div>
   );
 }
 
+const Home = () => (
+  <div>
+    <Navbar />
+    <NewUser />
+  </div>
+)
+
+const Dash = () => (
+  <div>
+    <Navbar />
+    <Dashboard />
+  </div>
+)
+
 function App() {
-  return(
-    <Router>
+  return (
+    <BrowserRouter>
       <Wrapper />
-    </Router>
+    </BrowserRouter>
   )
 }
 
