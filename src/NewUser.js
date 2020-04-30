@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './NewUser.css'
-import axios from 'axios';
+import axios from 'axios'
 
 
 class NewUser extends React.Component {
@@ -8,6 +8,7 @@ class NewUser extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
 
     handleClick(e) {
         e.preventDefault()
