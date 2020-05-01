@@ -1,21 +1,14 @@
 import React from 'react'
-import DashNav from './DashNav'
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: ''
-        }
     }
-
     
-
-
     render() {
         return (
             <div>
-                <h1 className="text-white text-center mt-5">Hello</h1>
+                <h1 className="text-white text-center mt-5">Welcome back, {this.props.user}</h1>
             </div>
         )
     }
