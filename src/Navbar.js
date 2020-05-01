@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import $ from 'jquery';
 import axios from 'axios';
+import Dashboard from './Dashboard'
 import { Link, Redirect } from 'react-router-dom'
 
 
@@ -29,7 +30,7 @@ class Navbar extends React.Component {
                 console.log(response.data.user);
                 this.setState({
                     user: response.data.user,
-                    view: 'dash',
+                    view: 'books',
                 })
                 this.props.handler(response.data.user)
             })
@@ -42,8 +43,8 @@ class Navbar extends React.Component {
 
     render() {
 
-        // if (this.state.view === 'dash') {
-        //     return <Redirect to={'/dashboard'} />
+        // if (this.state.view === 'books') {
+        //     return <Redirect to={'/books'} />
         // }
 
         // let books = this.state.books
@@ -67,9 +68,9 @@ class Navbar extends React.Component {
                                 </li>
                                 {this.state.user.name ?
                                 <li className="nav-item">
-                                    <Link className="nav-link mt-2 text-warning" to={'/'}>
+                                    <a href="http://localhost:3000/" className="nav-link mt-2 text-warning">
                                        Home
-                                    </Link>
+                                    </a>
                                 </li>
                                 :
                                 null}
@@ -88,15 +89,9 @@ class Navbar extends React.Component {
                                 </div>
                             </form>
                                 :
-                                null}
+                               null}
                         </div>
                     </nav>
-                </div>
-                <div>
-                    {/* {this.state.books[0].title} */}
-                    {/* {books.map(item => (
-                    <h1>{item.title}</h1>
-            ))} */}
                 </div>
             </div>
         )

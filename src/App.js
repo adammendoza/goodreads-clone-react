@@ -4,13 +4,11 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import NewUser from './NewUser'
 import Dashboard from './Dashboard'
-import DashNav from './DashNav'
 import BookSlide from './BookSlide'
 import axios from 'axios';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-class Wrapper extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +35,6 @@ class Wrapper extends React.Component {
     this.setState({
       user: newUser
     })
-    console.log('here')
   }
 
   render() {
@@ -46,14 +43,17 @@ class Wrapper extends React.Component {
       <div>
         <div id="jumbo">
           <Navbar handler={this.handler} user={this.state.user} />
-          <Switch>
-            <Route exact={true} path="/">
-              <Home handler={this.handler} user={this.state.user} />
-            </Route>
-            <Route path="/dashboard">
-              <Dash user={this.state.user} books={this.state.books} />
-            </Route>
-          </Switch>
+          {!this.state.user.name ?
+          <NewUser />
+          :
+          <Dashboard user={this.state.user} />
+          }
+        </div>
+        <div>
+          {this.state.books && this.state.user.name ?
+          <BookSlide books={this.state.books} />
+          :
+          null}
         </div>
         <div>
           <Footer />
@@ -61,39 +61,6 @@ class Wrapper extends React.Component {
       </div>
     );
   }
-}
-
-const Home = (props) => (
-  <div>
-    {!props.user.name ?
-      <NewUser />
-      :
-      null
-    }
-
-  </div>
-)
-
-const Dash = (props) => (
-  <div>
-    {props.user.name ?
-      <div>
-        <Dashboard user={props.user} />
-        <BookSlide books={props.books} />
-      </div>
-      :
-      null
-    }
-
-  </div>
-)
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Wrapper />
-    </BrowserRouter>
-  )
 }
 
 export default App;
