@@ -15,11 +15,7 @@ class DashNav extends React.Component {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <Link to={'/'}>
-                                <li className="nav-item">
-                                    <a className="nav-link mt-2 text-warning" href="#">Home</a>
-                                </li>
-                            </Link>
+                        
                             <li className="nav-item">
                                 <a className="nav-link" href="#"></a>
                             </li>

@@ -1,15 +1,16 @@
 import React from 'react'
 
-class BookSlide extends React.Component {
+function BookSlide(props) {
 
-    
-    render() {
         return (
+            props.books.length ? 
             <div>
-                {/* <h1>Books</h1> */}
+                <h1>{props.books[0].title}</h1>
             </div>
+            :
+            null
         )
-    }
+    
 }
 
 export default BookSlide

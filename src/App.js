@@ -14,27 +14,28 @@ class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: ''
+      user: { name: '' },
+      books: []
     }
     this.handler = this.handler.bind(this);
   }
 
-  // componentDidMount() {
-  //   axios.get('http://127.0.0.1:8000/api/books')
-  //     .then(response => {
-  //       this.setState({
-  //         books: response.data.data
-  //       })
+  componentDidMount() {
+    axios.get('http://127.0.0.1:8000/api/books')
+      .then(response => {
+        this.setState({
+          books: response.data.data
+        })
 
-  //     })
-  //     .catch(errors => {
-  //       console.log(errors)
-  //     });
-  // }
+      })
+      .catch(errors => {
+        console.log(errors)
+      });
+  }
 
-  handler() {
+  handler(newUser) {
     this.setState({
-      user: this.state.user
+      user: newUser
     })
     console.log('here')
   }
@@ -44,32 +45,46 @@ class Wrapper extends React.Component {
     return (
       <div>
         <div id="jumbo">
+          <Navbar handler={this.handler} user={this.state.user} />
           <Switch>
             <Route exact={true} path="/">
-              <Home state={this.state.books}/>
+              <Home handler={this.handler} user={this.state.user} />
             </Route>
             <Route path="/dashboard">
-              <Dash handler={this.handler} />
+              <Dash user={this.state.user} books={this.state.books} />
             </Route>
           </Switch>
         </div>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
 }
 
-const Home = () => (
+const Home = (props) => (
   <div>
-    <Navbar />
-    <NewUser />
+    {!props.user.name ?
+      <NewUser />
+      :
+      null
+    }
+
   </div>
 )
 
-const Dash = () => (
+const Dash = (props) => (
   <div>
-    <DashNav />
-    <Dashboard />
+    {props.user.name ?
+      <div>
+        <Dashboard user={props.user} />
+        <BookSlide books={props.books} />
+      </div>
+      :
+      null
+    }
+
   </div>
 )
 

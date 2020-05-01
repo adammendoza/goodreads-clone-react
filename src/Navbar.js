@@ -9,25 +9,12 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: '',
-            view: '',
-            books: ''
+            user: { name: '' }
         };
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/books')
-            .then(response => {
-                this.setState({
-                    books: response.data.data
-                })
-                console.log(this.state.books)
-            })
-            .catch(errors => {
-                console.log(errors)
-            });
-    }
+
 
     async handleClick(e) {
         e.preventDefault()
@@ -43,20 +30,23 @@ class Navbar extends React.Component {
                 this.setState({
                     user: response.data.user,
                     view: 'dash',
-                    books: this.state.books
                 })
+                this.props.handler(response.data.user)
             })
             .catch(errors => {
                 console.log(errors)
             });
 
+
     }
 
     render() {
 
-        if (this.state.view === 'dash') {
-            return <Redirect to={'/dashboard'} />
-        }
+        // if (this.state.view === 'dash') {
+        //     return <Redirect to={'/dashboard'} />
+        // }
+
+        // let books = this.state.books
 
         return (
             <div>
@@ -75,8 +65,16 @@ class Navbar extends React.Component {
                                 <li className="nav-item">
                                     <a className="nav-link" href="#"></a>
                                 </li>
+                                {this.state.user.name ?
+                                <li className="nav-item">
+                                    <Link className="nav-link mt-2 text-warning" to={'/'}>
+                                       Home
+                                    </Link>
+                                </li>
+                                :
+                                null}
                             </ul>
-                            <form>
+                            {!this.state.user.name ? <form>
                                 <div class="form-row align-items-center">
                                     <div class="col-auto">
                                         <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Name"></input>
@@ -89,11 +87,16 @@ class Navbar extends React.Component {
                                     </div>
                                 </div>
                             </form>
+                                :
+                                null}
                         </div>
                     </nav>
                 </div>
                 <div>
-                    {/* {this.state.books[0].id} */}
+                    {/* {this.state.books[0].title} */}
+                    {/* {books.map(item => (
+                    <h1>{item.title}</h1>
+            ))} */}
                 </div>
             </div>
         )

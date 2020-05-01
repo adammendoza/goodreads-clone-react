@@ -1,17 +1,14 @@
 import React from 'react'
+import BookSlide from './BookSlide'
 
-class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    
-    render() {
+function Dashboard(props) {
+   
         return (
             <div>
-                <h1 className="text-white text-center mt-5">Welcome back, {this.props.user}</h1>
+                <h1 className="text-white text-center mt-5">Welcome back, {props.user.name}</h1>
             </div>
         )
     }
-}
+
 
 export default Dashboard;
